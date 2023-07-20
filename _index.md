@@ -1,6 +1,8 @@
 # 👋 Hi there, I'm Martyn
 
-- 💪 Frontend dev with project management extension
+## About me
+
+- 💪 Frontend dev with project a management extension
 - 👩‍🎤 Speaker at PiterCSS, PyterPy, Burning Lead, Kolesa Conf and vas3k.club
 - ✍️ Аuthor of <https://someta.site>
 

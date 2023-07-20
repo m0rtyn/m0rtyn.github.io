@@ -1,13 +1,24 @@
+@font-face {
+  font-family: 'DW3';
+  src: url('./assets/DW3HH.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 h1, h2, h3 {
-  font-family: 'iA Writer Duospace', sans-serif;
+  font-family: 'DW3', sans-serif;
   font-weight: 600;
-  margin: 1.05em 0;
+  margin: 1em 0 0.5em 0;
+  border: none;
 }
 
 body {
   /* font-family: 'Segoe UI', Roboto, Oxygen, BlinkMacSystemFont, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   font-family: Roboto, sans-serif;
   font-size: 18px;
+  background-color: #001;
+  color: #ffe;
+  padding: 1rem 4rem;
 }
 
 h1 {
@@ -31,12 +42,11 @@ h3::before {
 }
 
 a {
-  color: #000A;
-  text-decoration-color: #0007;
+  color: #eefe;
   text-decoration: underline;
+  text-decoration-color: #eef7;
 }
-
-blockquote {
+  blockquote {
   font-size: 16px;
   border-left: 3px solid #0004;
   padding: 0.75rem;

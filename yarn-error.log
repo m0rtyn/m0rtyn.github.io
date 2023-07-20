@@ -1,0 +1,36 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.17_2/libexec/bin/yarn.js init
+
+PATH: 
+  /Users/m0rtyn/Library/pnpm:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/m0rtyn/Library/pnpm:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/homebrew/bin:/opt/homebrew/sbin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  20.2.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:137143:13)
+      at Interface.emit (node:events:511:28)
+      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1124:18)
+      at ReadStream.onkeypress (node:internal/readline/interface:263:20)
+      at ReadStream.emit (node:events:511:28)
+      at emitKeys (node:internal/readline/utils:357:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+      at ReadStream.emit (node:events:511:28)
+      at addChunk (node:internal/streams/readable:332:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
