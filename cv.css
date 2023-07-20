@@ -1,0 +1,63 @@
+h1, h2, h3 {
+  font-family: 'iA Writer Duospace', sans-serif;
+  font-weight: 600;
+  margin: 1.05em 0;
+}
+
+body {
+  /* font-family: 'Segoe UI', Roboto, Oxygen, BlinkMacSystemFont, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  font-family: Roboto, sans-serif;
+}
+
+h1 {
+  font-size: 26px;
+  border-bottom: 1px solid #0004;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 18px;
+  position: relative;
+}
+
+h3::before {
+  content: "• ";
+  position: absolute;
+  left: -1em;
+  color: #0004;
+}
+
+a {
+  color: #000A;
+  text-decoration-color: #0007;
+  text-decoration: underline;
+}
+
+blockquote {
+  font-size: 16px;
+  border-left: 3px solid #0004;
+  padding: 0.75rem;
+  background-color: rgba(0,0,0,0.025);
+  border-radius: 0.25rem;
+  margin: 1rem 0 0 0;
+}
+
+blockquote p {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+table > thead > tr > th {
+  border-bottom: 0;
+}
+
+li > p {
+  margin: 0.5rem 0;
+}
