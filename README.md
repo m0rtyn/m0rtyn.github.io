@@ -1,4 +1,4 @@
-# 👋 Hi there, I'm Martyn
+<!-- # 👋 Hi there, I'm Martyn -->
 
 - 💪 Frontend dev with project management extension
 - 👩‍🎤 Speaker at PiterCSS, PyterPy, Burning Lead, Kolesa Conf and vas3k.club
