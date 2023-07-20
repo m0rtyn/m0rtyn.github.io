@@ -1,0 +1,8 @@
+{
+  "markdown-pdf.convertOnSave": false,
+  "markdown-pdf.outputDirectoryRelativePathFile": true,
+  "markdown-pdf.styles": [
+    "index.css"
+  ],
+  "markdown-pdf.stylesRelativePathFile": true
+}
