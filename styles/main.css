@@ -1,0 +1,282 @@
+:root {
+    /* Цветовая палитра Oklch для темной темы */
+    --color-background: oklch(10% 0 0); /* Очень темный, почти черный */
+    --color-text-primary: oklch(95% 0 0); /* Светлый текст */
+    --color-text-secondary: oklch(70% 0 0); /* Серый текст */
+    --color-accent-1: oklch(60% 0 0); /* Акцентный цвет (серый) */
+    --color-accent-2: oklch(40% 0 0); /* Дополнительный акцент (темно-серый) */
+    --color-card-bg: oklch(20% 0 0 / 0.8); /* Фон карточки, полупрозрачный */
+    --color-card-border: oklch(50% 0 0); /* Рамка карточки */
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        text-shadow: 0 0 10px var(--color-accent-1);
+    }
+    50% {
+        text-shadow: 0 0 20px oklch(from var(--color-accent-1) l c h / 0.7), 0 0 30px oklch(from var(--color-accent-1) l c h / 0.5);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Anonymous Pro', monospace; /* Подключаем моноширинный шрифт */
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Минимальная высота на весь экран */
+    background-image: linear-gradient(
+        to right,
+        var(--color-background),
+        oklch(15% 0 0),
+        var(--color-background),
+        oklch(15% 0 0),
+        var(--color-background)
+    );
+    background-size: 200%;
+    animation: background-pan 40s linear infinite;
+}
+
+#background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Помещаем canvas за контентом */
+    pointer-events: none; /* Чтобы не перехватывал клики */
+}
+
+body::before, body::after {
+    content: '';
+    position: fixed;
+    opacity: 0.07;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--color-accent-1);
+    transition: transform 0.2s ease-out;
+}
+
+body::before {
+    top: 10vh;
+    left: 10vw;
+    width: 150px;
+    height: 150px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(-15deg) translate(var(--mouse-x-offset, 0), var(--mouse-y-offset, 0));
+}
+
+body::after {
+    bottom: 15vh;
+    right: 15vw;
+    width: 200px;
+    height: 200px;
+    background: var(--color-accent-2);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* A diamond shape */
+    transform: rotate(45deg) translate(var(--mouse-x-offset, 0), var(--mouse-y-offset, 0));
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--color-card-border); /* Подчеркивание для брутализма */
+    padding-bottom: 1.5rem;
+    animation: fadeInDown 0.8s 0.2s ease-out forwards;
+    opacity: 0;
+}
+
+.site-title {
+    font-size: 3rem;
+    color: var(--color-accent-1);
+    letter-spacing: -2px; /* Чуть сжатый текст */
+    position: relative;
+    padding-right: 1.5rem;
+    /* animation: pulse-glow 4s ease-in-out infinite; */
+    letter-spacing: 0.1cap;
+}
+
+/* Треугольник рядом с заголовком */
+/* .site-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-accent-2);
+    clip-path: polygon(0% 0%, 50% 100%, 100% 0%, 0% 0%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+} */
+
+.header:hover .site-title::after {
+    transform: translateY(-50%) rotate(225deg) scale(1.2);
+}
+
+
+.lang-switcher button {
+    background-color: var(--color-card-bg);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-card-border);
+    padding: 0.5rem 1rem;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    margin-left: 0.5rem;
+    border-radius: 0; /* Острые углы */
+}
+
+.lang-switcher button.active {
+    background-color: var(--color-accent-2);
+    color: var(--color-background);
+    border-color: var(--color-accent-2);
+}
+
+.lang-switcher button:not(.active):hover {
+    background-color: oklch(25% 0.07 270);
+    color: var(--color-text-primary);
+    transform: skewX(-10deg);
+}
+
+
+.main-content {
+    flex-grow: 1; /* Чтобы контент занимал все доступное место */
+}
+
+.links-section {
+    display: none; /* Скрываем по умолчанию */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem; /* Отступ между карточками */
+}
+
+.links-section.active {
+    display: grid; /* Показываем активную секцию как сетку */
+}
+
+.links-section.active > link-card {
+    animation: cardEnter 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    opacity: 0;
+}
+
+.links-section.active > link-card:nth-child(1) {
+    animation-delay: 0.4s;
+}
+.links-section.active > link-card:nth-child(2) {
+    animation-delay: 0.55s;
+}
+.links-section.active > link-card:nth-child(3) {
+    animation-delay: 0.7s;
+}
+.links-section.active > link-card:nth-child(4) {
+    animation-delay: 0.85s;
+}
+.links-section.active > link-card:nth-child(5) {
+    animation-delay: 1.0s;
+}
+.links-section.active > link-card:nth-child(6) {
+    animation-delay: 1.15s;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .site-title {
+        margin-bottom: 1.5rem;
+        padding-right: 0;
+    }
+    .site-title::after {
+        display: none; /* Убираем треугольник на мобильных */
+    }
+    .lang-switcher {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .lang-switcher button {
+        flex-grow: 1;
+        margin: 0 0.25rem;
+    }
+    .container {
+        padding: 1rem;
+    }
+
+    body::before, body::after {
+        display: none; /* Hide background shapes on mobile for less clutter */
+    }
+}
+
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 2.2rem;
+    }
+}
