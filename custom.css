@@ -1,0 +1,12 @@
+/* remove system-prompt warning message */
+.bg-vscode-editorWarning-foreground.text-vscode-editor-background {
+  display: none !important;
+}
+/* remove enhance prompt button */
+textarea+div>button:has(svg.lucide-wand-sparkles) {
+  display:none !important;
+}
+
+textarea {
+  color: red !important;
+}
