@@ -83,20 +83,16 @@
 }
 
 html {
-  /* background-color: #000;
-  background-color: oklch(0% 0 0); */
+  background-color: #000; /* Black for overscroll */
 }
 
-body {
-  font-family: var(--font-mono);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
   /* Animated gradient background */
+  background-color: var(--color-bg);
   background-image: linear-gradient(
     to right,
     var(--color-bg),
@@ -107,6 +103,16 @@ body {
   );
   background-size: 200%;
   animation: background-pan 40s linear infinite;
+}
+
+body {
+  font-family: var(--font-mono);
+  background: transparent;
+  color: var(--color-text);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ==========================================================================
