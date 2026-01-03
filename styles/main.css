@@ -215,15 +215,13 @@ body::after {
    ========================================================================== */
 
 .links-section {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-xl);
-  content-visibility: hidden;
-  contain-intrinsic-size: auto 500px;
 }
 
 .links-section.active {
-  content-visibility: visible;
+  display: grid;
 }
 
 /* ==========================================================================
