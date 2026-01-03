@@ -1,174 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Martyn.cc - Welcome</title>
+    <link
+      rel="stylesheet"
+      href="styles/main.css"
+    />
+    <script
+      type="module"
+      type="text/javascript"
+      src="components/link-card.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta
-		name="viewport"
-		content="width=device-width, initial-scale=1.0"
-	>
-	<title>Martyn.cc - Welcome</title>
-	<link
-		rel="stylesheet"
-		href="styles/main.css"
-	>
-	<script
-		type="module"
-		type="text/javascript"
-		src="components/link-card.js"
-	></script>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap"
-		rel="stylesheet"
-	>
-</head>
+  <body>
+    <canvas id="background-canvas"></canvas>
 
-<body>
-	<canvas id="background-canvas"></canvas>
+    <div class="container">
+      <header class="header">
+        <h1 class="site-title">m0rtyn.cc</h1>
+        <div class="lang-switcher">
+          <button
+            id="lang-en"
+            class="active"
+            data-lang="en"
+          >EN</button>
+          <button
+            id="lang-ru"
+            data-lang="ru"
+          >RU</button>
+        </div>
+      </header>
 
-	<div class="container">
-		<header class="header">
-			<h1 class="site-title">m0rtyn.cc</h1>
-			<div class="lang-switcher">
-				<button
-					id="lang-en"
-					class="active"
-					data-lang="en"
-				>EN</button>
-				<button
-					id="lang-ru"
-					data-lang="ru"
-				>RU</button>
-			</div>
-		</header>
+      <main class="main-content">
+        <section
+          id="links-en"
+          class="links-section active"
+        >
+          <!-- Content for English links -->
+          <link-card
+            title="Blog"
+            description="Thoughts on PKMs, personal notes, and more."
+            link="https://blog.m0rtyn.cc"
+            icon="✒️"
+          ></link-card>
+          <link-card
+            title="Pokoy App"
+            description="Minimalist meditation timer."
+            link="https://pokoy.m0rtyn.cc"
+            icon="🧘"
+          ></link-card>
+          <link-card
+            title="Skuka App"
+            description="Unleash your creativity by practicing intentional boredom."
+            link="https://skuka.m0rtyn.cc"
+            icon="😑"
+          ></link-card>
+          <link-card
+            title="CV"
+            description="My professional experience and skills."
+            link="https://cv.m0rtyn.cc"
+            icon="📄"
+          ></link-card>
+          <link-card
+            title="Martynak"
+            description="Keyboard layout for those who hate QWERTY."
+            link="https://martynak.m0rtyn.cc"
+            icon="⌨️"
+          ></link-card>
+          <link-card
+            title="Talks Playlist"
+            description="My talks and presentations."
+            link="https://talks.m0rtyn.cc"
+            icon="🎤"
+          ></link-card>
+          <link-card
+            title="Path of Mastery"
+            description="Create skill trees inspired by Path of Exile for your personal growth."
+            link="https://pom.m0rtyn.cc"
+            icon="🌳"
+          ></link-card>
+          <link-card
+            title="Rogue Tasker"
+            description="Todo app with roguelike mechanics inspired by Balatro and Binding of Isaac."
+            link="https://rogue.m0rtyn.cc"
+            icon="🎲"
+          ></link-card>
+        </section>
 
-		<main class="main-content">
-			<section
-				id="links-en"
-				class="links-section active"
-			>
-				<!-- Content for English links -->
-				<link-card
-					title="Blog"
-					description="Thoughts on PKMs, personal notes, and more."
-					link="https://blog.m0rtyn.cc"
-					icon="✒️"
-				></link-card>
-				<link-card
-					title="Pokoy App"
-					description="Minimalist meditation timer."
-					link="https://pokoy.m0rtyn.cc"
-					icon="🧘"
-				></link-card>
-				<link-card
-					title="Skuka App"
-					description="Unleash your creativity by practicing intentional boredom."
-					link="https://skuka.m0rtyn.cc"
-					icon="😑"
-				></link-card>
-				<link-card
-					title="CV"
-					description="My professional experience and skills."
-					link="https://cv.m0rtyn.cc"
-					icon="📄"
-				></link-card>
-				<link-card
-					title="Martynak"
-					description="Keyboard layout for those who hate QWERTY."
-					link="https://martynak.m0rtyn.cc"
-					icon="⌨️"
-				></link-card>
-				<link-card
-					title="Talks Playlist"
-					description="My talks and presentations."
-					link="https://talks.m0rtyn.cc"
-					icon="🎤"
-				></link-card>
-			</section>
+        <section
+          id="links-ru"
+          class="links-section"
+        >
+          <!-- Content for Russian links -->
+          <link-card
+            title="Блог"
+            description="Мысли о персональных знаниях, личные заметки и прочее."
+            link="https://blog.m0rtyn.cc"
+            icon="✒️"
+          ></link-card>
+          <link-card
+            title="Приложение Покой"
+            description="Минималистичный таймер для медитации"
+            link="https://pokoy.m0rtyn.cc"
+            icon="🧘"
+          ></link-card>
+          <link-card
+            title="Приложение Скука"
+            description="Освободи свою креативность практикуя намеренную скуку"
+            link="https://skuka.m0rtyn.cc"
+            icon="😑"
+          ></link-card>
+          <link-card
+            title="Резюме"
+            description="Мой профессиональный опыт и навыки"
+            link="https://cv.m0rtyn.cc"
+            icon="📄"
+          ></link-card>
+          <link-card
+            title="Мартынак"
+            description="Клавиатурная раскладка для тех, кого бесит QWERTY"
+            link="https://martynak.m0rtyn.cc"
+            icon="⌨️"
+          ></link-card>
+          <link-card
+            title="Плейлист докладов"
+            description="Mои доклады"
+            link="https://talks.m0rtyn.cc"
+            icon="🎤"
+          ></link-card>
+          <link-card
+            title="Path of Mastery"
+            description="Сервис для создания деревьев развития вдохновлённых Passive Skill Tree из Path of Exile."
+            link="https://pom.m0rtyn.cc"
+            icon="🌳"
+          ></link-card>
+          <link-card
+            title="Rogue Tasker"
+            description="Todo-приложение с механиками из роуглайков вроде Balatro и Binding of Isaac."
+            link="https://rogue.m0rtyn.cc"
+            icon="🎲"
+          ></link-card>
+        </section>
+      </main>
+    </div>
 
-			<section
-				id="links-ru"
-				class="links-section"
-			>
-				<!-- Content for Russian links -->
-				<link-card
-					title="Блог"
-					description="Мысли о персональных знаниях, личные заметки и прочее."
-					link="https://blog.m0rtyn.cc"
-					icon="✒️"
-				></link-card>
-				<link-card
-					title="Приложение Покой"
-					description="Минималистичный таймер для медитации"
-					link="https://pokoy.m0rtyn.cc"
-					icon="🧘"
-				></link-card>
-				<link-card
-					title="Приложение Скука"
-					description="Освободи свою креативность практикуя намеренную скуку"
-					link="https://skuka.m0rtyn.cc"
-					icon="😑"
-				></link-card>
-				<link-card
-					title="Резюме"
-					description="Мой профессиональный опыт и навыки"
-					link="https://cv.m0rtyn.cc"
-					icon="📄"
-				></link-card>
-				<link-card
-					title="Мартынак"
-					description="Клавиатурная раскладка для тех, кого бесит QWERTY"
-					link="https://martynak.m0rtyn.cc"
-					icon="⌨️"
-				></link-card>
-				<link-card
-					title="Плейлист докладов"
-					description="Mои доклады"
-					link="https://talks.m0rtyn.cc"
-					icon="🎤"
-				></link-card>
-			</section>
-		</main>
-	</div>
+    <script>
+      const langEnBtn = document.getElementById("lang-en");
+      const langRuBtn = document.getElementById("lang-ru");
+      const linksEnSection = document.getElementById("links-en");
+      const linksRuSection = document.getElementById("links-ru");
 
-	<script>
-		const langEnBtn = document.getElementById('lang-en');
-		const langRuBtn = document.getElementById('lang-ru');
-		const linksEnSection = document.getElementById('links-en');
-		const linksRuSection = document.getElementById('links-ru');
+      function setLanguage(lang) {
+        if (lang === "en") {
+          linksEnSection.classList.add("active");
+          linksRuSection.classList.remove("active");
+          langEnBtn.classList.add("active");
+          langRuBtn.classList.remove("active");
+          localStorage.setItem("m0rtyn_lang", "en");
+        } else {
+          linksEnSection.classList.remove("active");
+          linksRuSection.classList.add("active");
+          langEnBtn.classList.remove("active");
+          langRuBtn.classList.add("active");
+          localStorage.setItem("m0rtyn_lang", "ru");
+        }
+      }
 
-		function setLanguage(lang) {
-			if (lang === 'en') {
-				linksEnSection.classList.add('active');
-				linksRuSection.classList.remove('active');
-				langEnBtn.classList.add('active');
-				langRuBtn.classList.remove('active');
-				localStorage.setItem('m0rtyn_lang', 'en');
-			} else {
-				linksEnSection.classList.remove('active');
-				linksRuSection.classList.add('active');
-				langEnBtn.classList.remove('active');
-				langRuBtn.classList.add('active');
-				localStorage.setItem('m0rtyn_lang', 'ru');
-			}
-		}
+      // Check for saved language on load
+      const savedLang = localStorage.getItem("m0rtyn_lang");
+      if (savedLang) {
+        setLanguage(savedLang);
+      } else {
+        // Default to English if no saved preference
+        setLanguage("en");
+      }
 
-		// Check for saved language on load
-		const savedLang = localStorage.getItem('m0rtyn_lang');
-		if (savedLang) {
-			setLanguage(savedLang);
-		} else {
-			// Default to English if no saved preference
-			setLanguage('en');
-		}
-
-		langEnBtn.addEventListener('click', () => setLanguage('en'));
-		langRuBtn.addEventListener('click', () => setLanguage('ru'));
-	</script>
-	<script
-		src="assets/background-animation.js"
-		defer
-	></script>
-</body>
-
+      langEnBtn.addEventListener("click", () => setLanguage("en"));
+      langRuBtn.addEventListener("click", () => setLanguage("ru"));
+    </script>
+    <script
+      src="assets/background-animation.js"
+      defer
+    ></script>
+  </body>
 </html>

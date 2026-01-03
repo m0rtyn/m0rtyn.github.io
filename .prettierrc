@@ -1,0 +1,7 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleAttributePerLine": true,
+  "htmlWhitespaceSensitivity": "strict",
+  "printWidth": 80
+}
