@@ -8,27 +8,30 @@
 
 .logo {
   display: flex;
-  align-items: center;
-  min-height: 2em;
+  align-items: baseline;
+  height: 1.5em;
+  line-height: 1.5em;
 }
 
 .logo-name {
   color: oklch(80% 0 0);
-  display: inline;
-  vertical-align: middle;
+  display: inline-flex;
+  align-items: baseline;
   line-height: 1;
+  height: 1em;
 }
 
 .logo-suffix {
   font-size: 0.65em;
   margin-left: 0.1em;
-  display: inline;
+  display: inline-flex;
+  align-items: baseline;
   color: var(--color-accent, oklch(60% 0 0));
-  vertical-align: middle;
+  position: relative;
+  top: -0.15em;
 }
 
 .logo-dot {
   display: inline;
-  vertical-align: middle;
   line-height: 1;
 }
