@@ -83,8 +83,8 @@
 }
 
 html {
-  background-color: #000;
-  background-color: oklch(0% 0 0);
+  /* background-color: #000;
+  background-color: oklch(0% 0 0); */
 }
 
 body {
