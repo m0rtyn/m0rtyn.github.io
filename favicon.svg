@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1a1a1a"/>
+  <!-- Triforce -->
+  <!-- Top triangle (inverted) -->
+  <polygon points="16,14 22,4 10,4" fill="#fff"/>
+  <!-- Bottom left triangle -->
+  <polygon points="10,14 16,24 4,24" fill="#fff"/>
+  <!-- Bottom right triangle -->
+  <polygon points="22,14 28,24 16,24" fill="#fff"/>
+</svg>
