@@ -1,0 +1,31 @@
+/* ==========================================================================
+   Site Logo Component Styles
+   ========================================================================== */
+
+:host {
+  display: inline-block;
+  font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'Noto Sans Math', 'Segoe UI Symbol', system-ui, sans-serif;
+  font-size: var(--logo-font-size, 3rem);
+  color: var(--color-accent, oklch(60% 0 0));
+  letter-spacing: 0.1em;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-name {
+  color: oklch(80% 0 0);
+}
+
+.logo-suffix {
+  font-size: 0.65em;
+  color: var(--color-accent, oklch(60% 0 0));
+  vertical-align: middle;
+}
+
+.logo-dot {
+  display: inline-block;
+  vertical-align: middle;
+}

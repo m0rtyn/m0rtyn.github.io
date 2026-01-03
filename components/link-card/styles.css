@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Link Card Component Styles
+   ========================================================================== */
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Host Element
+   ========================================================================== */
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  opacity: 0;
+  animation: card-enter 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+/* ==========================================================================
+   Card Container
+   ========================================================================== */
+
+.card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: var(--color-card-bg, oklch(20% 0 0 / 0.8));
+  border: 1px solid var(--color-card-border, oklch(50% 0 0));
+  border-radius: 0;
+  text-decoration: none;
+  cursor: pointer;
+  animation: float 6s ease-in-out infinite;
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+/* Hover state */
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  background-color: oklch(25% 0 0 / 0.9);
+  animation-play-state: paused;
+}
+
+/* Active state */
+.card:active {
+  transform: translateY(-5px) scale(0.98);
+  transition: transform 0.1s ease-in-out;
+}
+
+/* ==========================================================================
+   Aurora Glow Effect (::before)
+   ========================================================================== */
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    oklch(65% 0 0 / 0.2),
+    transparent 20%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Decorative Shape (::after)
+   ========================================================================== */
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background-color: var(--color-accent, oklch(60% 0 0));
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(15deg);
+  opacity: 0;
+  transition:
+    transform 0.4s ease-out,
+    opacity 0.4s ease-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  transform: translate(10px, -10px) rotate(15deg);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Card Content
+   ========================================================================== */
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--color-text, oklch(95% 0 0));
+}
+
+.card-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-muted, oklch(70% 0 0));
+  margin-bottom: 1rem;
+}
+
+.card-link {
+  display: block;
+  font-weight: bold;
+  color: var(--color-text-muted, oklch(80% 0 0));
+  text-decoration: none;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
