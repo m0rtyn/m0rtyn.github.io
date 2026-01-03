@@ -226,22 +226,31 @@ body::after {
 }
 
 .links-section.active > link-card:nth-child(1) {
-    animation-delay: 0.4s;
+    animation-delay: 0.2s;
 }
 .links-section.active > link-card:nth-child(2) {
-    animation-delay: 0.55s;
+    animation-delay: 0.25s;
 }
 .links-section.active > link-card:nth-child(3) {
-    animation-delay: 0.7s;
+    animation-delay: 0.3s;
 }
 .links-section.active > link-card:nth-child(4) {
-    animation-delay: 0.85s;
+    animation-delay: 0.35s;
 }
 .links-section.active > link-card:nth-child(5) {
-    animation-delay: 1.0s;
+    animation-delay: 0.4s;
 }
 .links-section.active > link-card:nth-child(6) {
-    animation-delay: 1.15s;
+    animation-delay: 0.45s;
+}
+.links-section.active > link-card:nth-child(7) {
+    animation-delay: 0.5s;
+}
+.links-section.active > link-card:nth-child(8) {
+    animation-delay: 0.55s;
+}
+.links-section.active > link-card:nth-child(9) {
+    animation-delay: 0.6s;
 }
 
 /* Адаптивность */
