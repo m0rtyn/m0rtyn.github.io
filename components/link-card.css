@@ -1,0 +1,160 @@
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  opacity: 0;
+  animation: cardEnter 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+.card {
+  display: block;
+  background-color: var(--color-card-bg, oklch(20% 0 0 / 0.8));
+  border: 1px solid var(--color-card-border, oklch(50% 0 0));
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0;
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  animation: float 6s ease-in-out infinite;
+  text-decoration: none;
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  transition:
+    transform 0.3s ease-out,
+    opacity 0.3s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  background-color: oklch(25% 0 0 / 0.9);
+  animation-play-state: paused;
+}
+
+.card:active {
+  transform: translateY(-5px) scale(0.98);
+  transition: transform 0.1s ease-in-out;
+}
+
+.card:hover::after {
+  transform: translate(10px, -10px) rotate(15deg);
+  opacity: 1;
+}
+
+/* Aurora glow effect */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    oklch(65% 0 0 / 0.2),
+    transparent 20%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+/* Decorative geometric shape */
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background-color: var(--color-accent-1, oklch(60% 0 0));
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(15deg);
+  opacity: 0;
+  transition:
+    transform 0.4s ease-out,
+    opacity 0.4s ease-out;
+  z-index: 0;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--color-text-primary, oklch(95% 0 0));
+}
+
+.card-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary, oklch(70% 0 0));
+  margin-bottom: 1rem;
+}
+
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: var(--color-text-secondary, oklch(80% 0 0));
+  font-weight: bold;
+  text-align: right;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card-link:hover {
+  opacity: 1;
+  color: var(--color-text-primary, oklch(95% 0 0));
+}

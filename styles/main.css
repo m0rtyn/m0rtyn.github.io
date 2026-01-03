@@ -1,12 +1,12 @@
 :root {
-    /* Цветовая палитра Oklch для темной темы */
-    --color-background: oklch(10% 0 0); /* Очень темный, почти черный */
-    --color-text-primary: oklch(95% 0 0); /* Светлый текст */
-    --color-text-secondary: oklch(70% 0 0); /* Серый текст */
-    --color-accent-1: oklch(60% 0 0); /* Акцентный цвет (серый) */
-    --color-accent-2: oklch(40% 0 0); /* Дополнительный акцент (темно-серый) */
-    --color-card-bg: oklch(20% 0 0 / 0.8); /* Фон карточки, полупрозрачный */
-    --color-card-border: oklch(50% 0 0); /* Рамка карточки */
+    /* Oklch color palette for dark theme */
+    --color-background: oklch(10% 0 0); /* Very dark, almost black */
+    --color-text-primary: oklch(95% 0 0); /* Light text */
+    --color-text-secondary: oklch(70% 0 0); /* Gray text */
+    --color-accent-1: oklch(60% 0 0); /* Accent color (gray) */
+    --color-accent-2: oklch(40% 0 0); /* Secondary accent (dark gray) */
+    --color-card-bg: oklch(20% 0 0 / 0.8); /* Card background, semi-transparent */
+    --color-card-border: oklch(50% 0 0); /* Card border */
 }
 
 @keyframes background-pan {
@@ -49,17 +49,6 @@
     }
 }
 
-@keyframes cardEnter {
-    from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.98);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
 *,
 *::before,
 *::after {
@@ -73,13 +62,13 @@ html, body {
 }
 
 body {
-    font-family: 'Anonymous Pro', monospace; /* Подключаем моноширинный шрифт */
+    font-family: 'Anonymous Pro', monospace; /* Monospace font */
     background-color: var(--color-background);
     color: var(--color-text-primary);
     line-height: 1.6;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Минимальная высота на весь экран */
+    min-height: 100vh; /* Full viewport height */
     background-image: linear-gradient(
         to right,
         var(--color-background),
@@ -98,8 +87,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Помещаем canvas за контентом */
-    pointer-events: none; /* Чтобы не перехватывал клики */
+    z-index: -1; /* Place canvas behind content */
+    pointer-events: none; /* Don't capture clicks */
 }
 
 body::before, body::after {
@@ -145,7 +134,7 @@ body::after {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
-    border-bottom: 1px solid var(--color-card-border); /* Подчеркивание для брутализма */
+    border-bottom: 1px solid var(--color-card-border); /* Brutalist underline */
     padding-bottom: 1.5rem;
     animation: fadeInDown 0.8s 0.2s ease-out forwards;
     opacity: 0;
@@ -154,14 +143,14 @@ body::after {
 .site-title {
     font-size: 3rem;
     color: var(--color-accent-1);
-    letter-spacing: -2px; /* Чуть сжатый текст */
+    letter-spacing: -2px; /* Slightly condensed text */
     position: relative;
     padding-right: 1.5rem;
     /* animation: pulse-glow 4s ease-in-out infinite; */
     letter-spacing: 0.1cap;
 }
 
-/* Треугольник рядом с заголовком */
+/* Triangle next to title */
 /* .site-title::after {
     content: '';
     position: absolute;
@@ -190,7 +179,7 @@ body::after {
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
     margin-left: 0.5rem;
-    border-radius: 0; /* Острые углы */
+    border-radius: 0; /* Sharp corners */
 }
 
 .lang-switcher button.active {
@@ -207,53 +196,20 @@ body::after {
 
 
 .main-content {
-    flex-grow: 1; /* Чтобы контент занимал все доступное место */
+    flex-grow: 1; /* Content takes all available space */
 }
 
 .links-section {
-    display: none; /* Скрываем по умолчанию */
+    display: none; /* Hidden by default */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem; /* Отступ между карточками */
+    gap: 2rem; /* Gap between cards */
 }
 
 .links-section.active {
-    display: grid; /* Показываем активную секцию как сетку */
+    display: grid; /* Show active section as grid */
 }
 
-.links-section.active > link-card {
-    animation: cardEnter 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
-    opacity: 0;
-}
-
-.links-section.active > link-card:nth-child(1) {
-    animation-delay: 0.2s;
-}
-.links-section.active > link-card:nth-child(2) {
-    animation-delay: 0.25s;
-}
-.links-section.active > link-card:nth-child(3) {
-    animation-delay: 0.3s;
-}
-.links-section.active > link-card:nth-child(4) {
-    animation-delay: 0.35s;
-}
-.links-section.active > link-card:nth-child(5) {
-    animation-delay: 0.4s;
-}
-.links-section.active > link-card:nth-child(6) {
-    animation-delay: 0.45s;
-}
-.links-section.active > link-card:nth-child(7) {
-    animation-delay: 0.5s;
-}
-.links-section.active > link-card:nth-child(8) {
-    animation-delay: 0.55s;
-}
-.links-section.active > link-card:nth-child(9) {
-    animation-delay: 0.6s;
-}
-
-/* Адаптивность */
+/* Responsive */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -264,7 +220,7 @@ body::after {
         padding-right: 0;
     }
     .site-title::after {
-        display: none; /* Убираем треугольник на мобильных */
+        display: none; /* Hide triangle on mobile */
     }
     .lang-switcher {
         width: 100%;
