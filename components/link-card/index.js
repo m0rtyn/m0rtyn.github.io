@@ -36,6 +36,19 @@ const htmlLoaded = fetch(new URL('./template.html', import.meta.url))
 const interpolate = (template, data) =>
   template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] ?? '');
 
+// Shared IntersectionObserver for pausing animations when offscreen
+const visibilityObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const card = entry.target.shadowRoot?.querySelector('.card');
+      if (card) {
+        card.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+      }
+    });
+  },
+  { rootMargin: '50px' }
+);
+
 class LinkCard extends HTMLElement {
   static observedAttributes = ['title', 'description', 'link', 'icon', 'delay'];
 
@@ -44,6 +57,8 @@ class LinkCard extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.adoptedStyleSheets = [styleSheet];
     this._initialized = false;
+    this._mouseMoveHandler = null;
+    this._rafTicking = false;
   }
 
   connectedCallback() {
@@ -53,7 +68,20 @@ class LinkCard extends HTMLElement {
       Promise.all([cssLoaded, htmlLoaded]).then(() => {
         this._render();
         this._initialized = true;
+        // Start observing for visibility-based animation pausing
+        visibilityObserver.observe(this);
       });
+    } else {
+      visibilityObserver.observe(this);
+    }
+  }
+
+  disconnectedCallback() {
+    // Cleanup: unobserve and remove event listener
+    visibilityObserver.unobserve(this);
+    const card = this.shadowRoot?.querySelector('.card');
+    if (card && this._mouseMoveHandler) {
+      card.removeEventListener('mousemove', this._mouseMoveHandler);
     }
   }
 
@@ -97,17 +125,31 @@ class LinkCard extends HTMLElement {
   }
 
   /**
-   * Sets up mouse position tracking for aurora glow effect
+   * Sets up throttled mouse position tracking for aurora glow effect
    */
   _setupMouseTracking() {
     const card = this.shadowRoot?.querySelector('.card');
     if (!card) return;
 
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-    });
+    // Remove old handler if exists
+    if (this._mouseMoveHandler) {
+      card.removeEventListener('mousemove', this._mouseMoveHandler);
+    }
+
+    // Throttle mousemove with requestAnimationFrame
+    this._mouseMoveHandler = (e) => {
+      if (this._rafTicking) return;
+      this._rafTicking = true;
+
+      requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        this._rafTicking = false;
+      });
+    };
+
+    card.addEventListener('mousemove', this._mouseMoveHandler, { passive: true });
   }
 }
 

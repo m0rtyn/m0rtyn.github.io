@@ -7,25 +7,28 @@
 }
 
 .logo {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  min-height: 2em;
 }
 
 .logo-name {
   color: oklch(80% 0 0);
-  vertical-align: inherit;
+  display: inline;
+  vertical-align: middle;
+  line-height: 1;
 }
 
 .logo-suffix {
   font-size: 0.65em;
   margin-left: 0.1em;
-  line-height: inherit;
+  display: inline;
   color: var(--color-accent, oklch(60% 0 0));
-  vertical-align: inherit;
+  vertical-align: middle;
 }
 
 .logo-dot {
-  display: inline-block;
-  vertical-align: inherit;
+  display: inline;
+  vertical-align: middle;
+  line-height: 1;
 }

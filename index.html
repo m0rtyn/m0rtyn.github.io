@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<html 
-  lang="en" 
-  style="background-color: #000;"
->
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="m0rtyn's personal links and projects">
   <title>m0rtyn.cc</title>
 
-  <!-- Preload critical resources -->
+  <!-- DNS prefetch for external domains -->
+  <link rel="dns-prefetch" href="//blog.m0rtyn.cc">
+  <link rel="dns-prefetch" href="//pokoy.m0rtyn.cc">
+  <link rel="dns-prefetch" href="//skuka.m0rtyn.cc">
+  <link rel="dns-prefetch" href="//pom.m0rtyn.cc">
+  <link rel="dns-prefetch" href="//rogue.m0rtyn.cc">
+  <link rel="dns-prefetch" href="//t.me">
+  <link rel="dns-prefetch" href="//github.com">
+  <link rel="dns-prefetch" href="//linkedin.com">
+
+  <!-- Preload critical resources (no crossorigin for same-origin) -->
   <link rel="preload" href="styles/main.css" as="style">
-  <link rel="preload" href="components/link-card/index.js" as="script" crossorigin>
-  <link rel="preload" href="components/site-logo/index.js" as="script" crossorigin>
+  <link rel="preload" href="components/link-card/index.js" as="script">
+  <link rel="preload" href="components/site-logo/index.js" as="script">
+  <link rel="preload" href="assets/background-animation.js" as="script">
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles/main.css">
@@ -176,7 +187,6 @@
   </script>
 
   <!-- Background Scripts -->
-  <script src="assets/logo-randomizer.js" defer></script>
-  <script src="assets/background-animation.js" defer></script>
+  <script type="module" src="assets/background-animation.js"></script>
 </body>
 </html>
