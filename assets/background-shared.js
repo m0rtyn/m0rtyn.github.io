@@ -13,6 +13,7 @@ export const CONFIG = {
   rotationRange: 0.01,
   opacityRange: { min: 0.1, max: 0.6 },
   color: 150,
+  collisionsEnabled: true,
 };
 
 /**
@@ -101,6 +102,17 @@ export const drawShapeFunctions = {
 };
 
 /**
+ * Radius multiplier for each shape type based on visual size
+ */
+const shapeRadiusMultiplier = {
+  triangle: 1.0,
+  rectangle: 0.7,
+  line: 0.5,
+  star: 1.0,
+  personalSign: 1.2,
+};
+
+/**
  * Pick a random shape type (5% chance for rare shapes)
  */
 export const pickRandomShapeType = () => {
@@ -147,6 +159,9 @@ export const createShapeClass = (dpr = 1) => {
       this.rotationSpeed = (Math.random() - 0.5) * CONFIG.rotationRange;
       this.color = generateShapeColor();
       this._drawFn = drawShapeFunctions[type];
+      // Collision radius based on shape type
+      this.radius = size * (shapeRadiusMultiplier[type] || 1);
+      this.mass = size;
     }
 
     draw(ctx) {
@@ -171,11 +186,74 @@ export const createShapeClass = (dpr = 1) => {
       if (this.y > this.canvasHeight + margin) this.y = -margin;
     }
 
+    /**
+     * Check if this shape collides with another
+     * @param {Shape} other - Another shape to check collision with
+     * @returns {boolean} True if colliding
+     */
+    collidesWith(other) {
+      const dx = this.x - other.x;
+      const dy = this.y - other.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      return distance < this.radius + other.radius;
+    }
+
+    /**
+     * Resolve elastic collision with another shape
+     * @param {Shape} other - The other shape involved in collision
+     */
+    resolveCollision(other) {
+      const dx = other.x - this.x;
+      const dy = other.y - this.y;
+      const distSq = dx * dx + dy * dy;
+      const minDist = this.radius + other.radius;
+
+      if (distSq >= minDist * minDist || distSq === 0) return;
+
+      const distance = Math.sqrt(distSq);
+      const nx = dx / distance;
+      const ny = dy / distance;
+
+      // Separate first
+      const overlap = minDist - distance;
+      const totalMass = this.mass + other.mass;
+      this.x -= nx * overlap * (other.mass / totalMass);
+      this.y -= ny * overlap * (other.mass / totalMass);
+      other.x += nx * overlap * (this.mass / totalMass);
+      other.y += ny * overlap * (this.mass / totalMass);
+
+      // Then exchange velocity components along normal
+      const dvn = (this.vx - other.vx) * nx + (this.vy - other.vy) * ny;
+      if (dvn > 0) return;
+
+      const impulse = dvn / totalMass;
+      this.vx -= impulse * other.mass * nx;
+      this.vy -= impulse * other.mass * ny;
+      other.vx += impulse * this.mass * nx;
+      other.vy += impulse * this.mass * ny;
+    }
+
     updateCanvasSize(width, height) {
       this.canvasWidth = width;
       this.canvasHeight = height;
     }
   };
+};
+
+/**
+ * Check and resolve collisions between all shapes
+ * @param {Shape[]} shapes - Array of shapes to check
+ */
+export const resolveAllCollisions = (shapes) => {
+  if (!CONFIG.collisionsEnabled) return;
+  
+  for (let i = 0; i < shapes.length; i++) {
+    for (let j = i + 1; j < shapes.length; j++) {
+      if (shapes[i].collidesWith(shapes[j])) {
+        shapes[i].resolveCollision(shapes[j]);
+      }
+    }
+  }
 };
 
 /**

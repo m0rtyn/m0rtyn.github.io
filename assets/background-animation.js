@@ -8,6 +8,7 @@ import {
   CONFIG,
   createShapeClass,
   createRandomShape,
+  resolveAllCollisions,
 } from './background-shared.js';
 
 /**
@@ -95,10 +96,20 @@ const initFallback = (canvas) => {
     if (isPaused) return;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update positions
     for (let i = 0; i < shapes.length; i++) {
       shapes[i].update();
+    }
+    
+    // Check and resolve collisions
+    resolveAllCollisions(shapes);
+    
+    // Draw shapes
+    for (let i = 0; i < shapes.length; i++) {
       shapes[i].draw(ctx);
     }
+    
     rafId = requestAnimationFrame(animate);
   };
 
